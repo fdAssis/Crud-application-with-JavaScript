@@ -8,10 +8,10 @@ const novaLinha = (nome, email, id) => {
       <td>
         <ul class="tabela__botoes-controle">
           <li>
-            <a href="../telas/edita_cliente.html?id=${id}" class="botao-simples botao-simples--editar">
+            <a href="../screens/edita_cliente.html?id=${id}" class="botao-simples botao-simples--editar">
               Editar
             </a>
-          </li>
+          </li> 
           
           <li> 
             <button class="botao-simples botao-simples--excluir" type="button">
@@ -29,6 +29,8 @@ const novaLinha = (nome, email, id) => {
 const tabela = document.querySelector('[data-tabela]');
 
 const listaClientes = () => {
+  
+  /* Fazendo requisição usando Promise **
   const promise = new Promise((resolve, reject) => {
     const http = new XMLHttpRequest();
 
@@ -43,9 +45,18 @@ const listaClientes = () => {
     }
 
     http.send();
+    
   });
   //console.log(promise);
   return promise;
+  */
+
+  // Fazendo requisição com fetchAPI
+  return fetch(`http://localhost:3000/profile`).then(
+    response => {
+      return response.json();
+    }
+  )
 }
 
 listaClientes().then(data =>
